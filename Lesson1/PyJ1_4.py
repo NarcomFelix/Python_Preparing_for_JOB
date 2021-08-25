@@ -9,3 +9,40 @@
 значения процентной ставки для каждого срока. В функции необходимо проверять принадлежность суммы вклада
 к одному из диапазонов и выполнять расчет по нужной процентной ставке. Функция возвращает сумму вклада на конец срока.
 """
+
+def bank(deposit, term):
+    # три банковских продукта:
+    global per
+    b1 = {"begin_sum": 1000, "end_sum": 10000, 6: 5, 12: 6, 24: 5}
+    b2 = {"begin_sum": 10000, "end_sum": 100000, 6: 6, 12: 7, 24: 6.5}
+    b3 = {"begin_sum": 100000, "end_sum": 1000000, 6: 7, 12: 8, 24: 7.5}
+
+    if deposit < b1.get("begin_sum") or deposit > b3.get("end_sum"):
+        return print("Сумма вклада должна быть от 1000р до 1000000")
+
+    if term not in [6, 12, 24]:
+        return print("Доступные сроки вклада (в месяцах): 6, 12, 24 ")
+
+    elif deposit > b1.get("begin_sum") and deposit < b1.get("end_sum"):
+        for i in b1.keys():
+            if i == term:
+                per = b1.get(i)
+
+
+    elif deposit >= b2.get("begin_sum") and deposit < b2.get("end_sum"):
+        for i in b2.keys():
+            if i == term:
+                per = b2.get(i)
+
+    elif deposit >= b3.get("begin_sum") and deposit <= b3.get("end_sum"):
+        for i in b3.keys():
+            if i == term:
+                per = b3.get(i)
+
+
+    return deposit * (1 + per*term/(100*12))
+
+
+
+print(round(bank(1000000,24),2))
+
