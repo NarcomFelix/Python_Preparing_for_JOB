@@ -5,3 +5,16 @@
 выводится в главной функции. Элементы строки (элементы таблицы умножения) должны разделяться табуляцией.
 """
 
+my_func = lambda i, j, mult: print(f'{i} * {j} = {mult}')
+
+def multiplication_table(A, B):
+    for i in range(1, A + 1):
+        for j in range(1, B + 1):
+            array = []
+            array.append(i)
+            array.append(j)
+            array.append(i * j)
+            my_func(array[0],array[1],array[2])
+
+
+multiplication_table(3,4)
